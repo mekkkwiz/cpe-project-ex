@@ -1,128 +1,108 @@
 \chapter{\ifenglish Background Knowledge and Theory\else ทฤษฎีที่เกี่ยวข้อง\fi}
 
-การทำโครงงาน เริ่มต้นด้วยการศึกษาค้นคว้า ทฤษฎีที่เกี่ยวข้อง หรือ งานวิจัย/โครงงาน ที่เคยมีผู้นำเสนอไว้แล้ว ซึ่งเนื้อหาในบทนี้ก็จะเกี่ยวกับการอธิบายถึงสิ่งที่เกี่ยวข้องกับโครงงาน เพื่อให้ผู้อ่านเข้าใจเนื้อหาในบทถัดๆ ไปได้ง่ายขึ้น
+โครงการนี้เป็นการสร้างระบบตอบรับแบบอัตโนมัติโดยรับคำสั่งผ่านทางเสียงและตอบกลับด้วยเสียงออกมาทันที
+โดยจะมีตัวกลางในการเชื่อมต่อและเป็นหัวใจหลักของโครงงานนี้ นั้นก็คือ dialogflow ซึ้งเป็น API AI
+ที่จะเข้ามาช่วยในการสร้างระบบตอบรับแบบอัตโนมัติและเพื่อให้ dialogflow ที่รับ input เป็นข้อความเข้าใจ
+คำสั่งที่ผู้ใช้พูดเราจำเป็นที่จะต้องมี API อีกตัวเข้ามาช่วย นั้นก็คือ Google Speech-To-Text ซึ้งเป็น API
+ที่จะรับเสียงที่ผู้ใช้พูดออกมาแล้วแปลงเป็นข้อความเพื่อส่งให้ dialogflow เข้าใจและตอบกลับออก ซึ่งคำตอบของ
+dialogflow ก็จะเป็นข้อความเพราะฉนั้นอีกสื่งที่จะขาดไปไม่ได้เลยคือ google Text-To-Speech เพื่อที่จะแปลง
+คำตอบของ agent ให้กลายเป็นเสียงเพื่อที่ทำให้ผู้ใช้ได้ยินคำตอบของ agent โดยลายละเอียดทีของ API แต่ละตัวที่ใช้เป็นดังนี้
 
-\section{The first section}
-The text for Section 1 goes here.
 
-\section{Second section}
-Section 2 text.
+\section{Dialogflow}
+Dialogflow หรือ Api.ai เป็น product ที่ถูกพัฒนาขึ้นโดย Speaktoit ถูก Google ซื้อ และนำไปพัฒนาต่อยอดในปี
+2016 และพึ่งเปลี่ยนชื่อมาเป็น Dialogflow โดยตัว Dialogflow ใช้เทคนิคด้าน Machine Learning และ natural language
+processing (NLP) ทำให้เข้าใจการสนทนาของมนุษย์และสามารถในไปใช้ได้หลากหลายรูปแบบ และ Dialogflow ยังสามารถเชื่อมต่อกับ
+Facebook, Twitter และอื่นๆได้ง่าย มันยังสามารถเชื่อมต่อกับ Google Cloud Speech-to-Text ได้ด้วย ซึ่งที่ผ่านมา
+Dialogflow เป็นเครื่องมือสำคัญในการสร้างบทสนทนาที่ใช้บน Google Assistant
 
-\subsection{Subsection heading goes here}
+\section{Google Speech-To-Text}
+API Google Speech-To-Text (gSTT) ของ Google เป็นอีกหนึ่งตัวเลือกที่ดีในการรวมการจดจำเสียงเข้ากับเว็ปแอปพลิเคชัน
+โดยหลักการทำงานของ STT คือการรับเสียงเข้าไปประมวลผลและตอบกลับออกมาเป็นข้อความ
 
-Subsection 1 text
+\section{Google Text-To-Speech}
+เช่นเดียวกับ Google Speech-To-Text Google Text-To-Speech นั้นเป็นบริการของ Google Cloud platform
+สำหรับการแปลงข้อความให้กลายเป็นเสียงพูด เพื่อตอบโต้กับผู้ใช้งานทำให้ผู้ใช้งานนั้นรู้สึกเหมือนได้คุยกับคนจริงๆ
 
-\subsubsection{Subsubsection 1 heading goes here}
-Subsubsection 1 text
+\section{Google Firebase}
+Firebase คือ Platform ที่รวบรวมเครื่องมือต่าง ๆ สำหรับการจัดการในส่วนของ Backend หรือ Server side
+ซึ่งทำให้สามารถสร้าง Web Application ได้อย่างมีประสิทธิภาพ และยังลดเวลาและค่าใช้จ่ายของการทำ Server side
+หรือการวิเคราะห์ข้อมูลให้อีกด้วย โดยมีทั้งเครื่องมือที่ฟรี และเครื่องมีที่มีค่าใช้จ่าย (สำหรับการ Scale) ซึ่งบริการหลักๆของ
+Firebase ที่เราใช้จะมีดังนี้
 
-\subsubsection{Subsubsection 2 heading goes here}
-Subsubsection 2 text
+\begin{enumerate}
+  \item Cloud Storage คือ บริการจัดเก็บไฟล์ข้อมูลในระบบ cloud ที่มีความปลอดภัยสูง เพื่อรองรับการดาวน์โหลดและอัพโหลดไฟล์ข้อมูลขนาดใหญ่
+  \item Cloud Firestore คือ บริการทางด้าน Database ที่เป็นลักษณะเป็น NoSQL โดนจะจัดกับข้อมูลในรูปแบบ JSON files format
+\end{enumerate}
 
-\section{Third section}
-Section 3 text. The dielectric constant\index{dielectric constant}
-at the air-metal interface determines
-the resonance shift\index{resonance shift} as absorption or capture occurs
-is shown in Equation~\eqref{eq:dielectric}:
+\section{React}
+React คือ JavaScript Library ที่ทีม Facebook เป็นคนพัฒนาขึ้นมา และเปิดให้คนทั่วไปนำมาใช้ฟรี ซึ่งเว็บไซต์ในปัจจุบันของ
+Facebook.com ก็ใช้ React อยู่เช่นกัน สรุปคือ โดยมีคอนเซปต์ที่ต้องรู้เพื่อเขียน React หลักๆ 3 Concept เท่านั้นเอง
 
-\begin{equation}\label{eq:dielectric}
-k_1=\frac{\omega}{c({1/\varepsilon_m + 1/\varepsilon_i})^{1/2}}=k_2=\frac{\omega
-\sin(\theta)\varepsilon_\mathit{air}^{1/2}}{c}
-\end{equation}
+\begin{enumerate}
+  \item Component: ส่วนต่าง ๆ ในเว็บเราจะมองเป็น Component
+  \item State: ข้อมูลที่อยู่ใน Component แต่ละชิ้น เราเรียกว่า State
+  \item Props: ข้อมูลที่ถูกส่งต่อจาก Component ชั้นบนลงไปชั้นล่าง เราเรียกว่า Props (Properties)
+\end{enumerate}
 
-\noindent
-where $\omega$ is the frequency of the plasmon, $c$ is the speed of
-light, $\varepsilon_m$ is the dielectric constant of the metal,
-$\varepsilon_i$ is the dielectric constant of neighboring insulator,
-and $\varepsilon_\mathit{air}$ is the dielectric constant of air.
 
-\section{About using figures in your report}
+\section{JS}
+JavaScript คือ ภาษาคอมพิวเตอร์สำหรับการเขียนโปรแกรมบนระบบอินเทอร์เน็ต ที่กำลังได้รับความนิยมอย่างสูง Java JavaScript
+เป็น ภาษาสคริปต์เชิงวัตถุ ที่เรียกกันว่า "สคริปต์" (script) ซึ่งในการสร้างและพัฒนาเว็บไซต์ (ใช่ร่วมกับ HTML) เพื่อให้เว็บไซต์ของ
+เราดูมีการเคลื่อนไหว สามารถตอบสนองผู้ใช้งานได้มากขึ้น ซึ่งมีวิธีการทำงานในลักษณะ "แปลความและดำเนินงานไปทีละคำสั่ง"
+(interpret) หรือเรียกว่า อ็อบเจ็กโอเรียลเต็ด (Object Oriented Programming) ที่มีเป้าหมายในการ ออกแบบและพัฒนา
+โปรแกรมในระบบอินเทอร์เน็ต สำหรับผู้เขียนด้วยภาษา HTML สามารถทำงานข้ามแพลตฟอร์มได้ โดยทำงานร่วมกับ ภาษา HTML และภาษา
+Java ได้ทั้งทางฝั่งไคลเอนต์ (Client) และ ทางฝั่งเซิร์ฟเวอร์ (Server)
 
-% define a command that produces some filler text, the lorem ipsum.
-\newcommand{\loremipsum}{
-  \textit{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-  minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-  aliquip ex ea commodo consequat. Duis aute irure dolor in
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.}\par}
+\section{Express}
+Express.js เป็น Web Application Framework ที่ได้รับความนิยมมากสำหรับการทำงานบน platform ของ Node.js
+ซึ่งเป็น Server ตัวหนึ่ง โดยทั้ง Express.js และ Node.js ต่างก็ใช้ภาษา Javascript ในการพัฒนา ถ้าเป็น Web
+Application Framework ในสมัยก่อน คนที่พัฒนาจะต้องมีความรู้มากกว่า 1 ภาษา ภาษาที่ทำงานทางฝั่ง Server อย่าง PHP
+หรือ ASP และภาษาที่ทำงานทางฝั่ง Client อย่าง JavaScript เพื่อลดความยุ่งยากรวมถึงเวลาในการต้องเรียน รู้หลายๆ ภาษาทำให้เกิด
+Node.js กับ Express.js เพียงแค่มีความรู้ Javascript ก็สามารถเขียนได้ทั้ง Server และ Client และเนื่องจากใช้
+Javascript ในการพัฒนาจึงทำให้ตัว Express นั้นตอบสนองเร็วมาก
 
-\begin{figure}
-  \centering
+\section{OpenWeatherMap}
+OpenWeatherMap คือผู้ให้บริการ API ที่ให้บริการดึงข้อมูลสภาพอากาศทั่วโลก ซึ่งให้ข้อมูลผ่าน API ซึ่งรวมถึงข้อมูลสภาพอากาศในปัจจุบันม
+พยากรณ์อากาศ ซึ่งมีทั้งรายการในปัจจุบัน และข้อมูลสภาพอากาศในอดีตสำหรับแต่ละพื่นที่บนโลก โดยบริษัทได้จัดทำการคาดการณ์ปริมาณน้ำฝน
+แบบไฮเปอร์โลคัลแบบนาทีต่อนาทีสำหรับแต่ละสถานที่ โดยอาศัยข้อมูลอากาศจากกรมอุตุนิยมวิทยาและข้อมูลจากสถานีตรวจอากาศสนามบิน,
+สถานีเรดาร์ภาคพื้นดิน, ดาวเทียมตรวจสภาพอากาศ, ดาวเทียมสำรวจระยะไกล METAR และสถานีตรวจอากาศอัตโนมัติทั่วโลก
 
-  \fbox{
-     \parbox{.6\textwidth}{\loremipsum}
-  }
 
-  % To include an image in the figure, say myimage.pdf, you could use
-  % the following code. Look up the documentation for the package
-  % graphicx for more information.
-  % \includegraphics[width=\textwidth]{myimage}
-
-  \caption[Sample figure]{This figure is a sample containing \gls{lorem ipsum},
-  showing you how you can include figures and glossary in your report.
-  You can specify a shorter caption that will appear in the List of Figures.}
-  \label{fig:sample-figure}
-\end{figure}
-
-Using \verb.\label. and \verb.\ref. commands allows us to refer to
-figures easily. If we can refer to Figures
-\ref{fig:walrus} and \ref{fig:sample-figure} by name in the {\LaTeX}
-source code, then we will not need to update the code that refers to it
-even if the placement or ordering of the figures changes.
-
-\loremipsum\loremipsum
-
-% This code demonstrates how to get a landscape table or figure. It
-% uses the package lscape to turn everything but the page number into
-% landscape orientation. Everything should be included within an
-% \afterpage{ .... } to avoid causing a page break too early.
-\afterpage{
-  \begin{landscape}
-  \begin{table}
-    \caption{Sample landscape table}
-    \label{tab:sample-table}
-
-    \centering
-
-    \begin{tabular}{c||c|c}
-        Year & A & B \\
-        \hline\hline
-        1989 & 12 & 23 \\
-        1990 & 4 & 9 \\
-        1991 & 3 & 6 \\
-    \end{tabular}
-  \end{table}
-  \end{landscape}
-}
-
-\loremipsum\loremipsum\loremipsum
-
-\section{Overfull hbox}
-
-When the \verb.semifinal. option is passed to the \verb.cpecmu. document class,
-any line that is longer than the line width, i.e., an overfull hbox, will be
-highlighted with a black solid rule:
-\begin{center}
-\begin{minipage}{2em}
-juxtaposition
-\end{minipage}
-\end{center}
+\section{ทฤษฎีการออกแบบ UX/UI}
+การออกแบบแอพพลิเคชั่นและเว็บไซต์ มีเรื่องมากมายที่ทำให้ดีไซน์เนอร์ปวดหัว เพราะมันไม่ใช่แค่ความสวยงาม แต่คือการออกแบบเพื่อตอบ
+โจทย์การใช้งานของผู้ใช้ให้มากที่สุด และสิ่งที่เราจะพูดถึงในบทความนี้คือ “ลายแทง สำหรับนักออกแบบ” ก่อนลงมือพัฒนาจริง ในการออก
+แบบ UI ที่ดี ต้องคำนึงถึงองค์ประกอบดังนี้
+\begin{enumerate}
+  \item Visibility คือ มีความชัดเจนที่จะบ่งบอกถึงเอกลักษณ์เฉพาะตัวของแอพ โดยคำนึงการใช้งาน และมี Concept ที่ชัดเจน
+  \item Development ต้องคำนึงถึง ความสามารถในการปรับแต่งและข้อจำกัดของ platform เช่น การรองรับ การสร้างต้นแบบที่รวดเร็ว, มีคลังข้อมูล และมีชุดเครื่องมือที่รองรับ เพื่อที่จะสามารถต่อยอดและพัฒนาต่อไปได้
+  \item Acceptance หมายถึง ยอมรับในข้อตกลงสิทธิบัตร และนโยบายองค์กร ไม่ขัดกับข้อบังคับ (Apple Store, Google Play)
+  \item Colors การเลือกใช้สีที่ดี จะช่วยให้ผู้ใช้เกิดการจดจำที่ดียิ่งขึ้นมากกว่าการใช้เพียงแค่สีขาว-ดำ อีกทั้งรวมถึงการเพิ่มประสิทธิภาพและดึงดูดผู้ใช้งานอีกด้วย นอกจากนั้นประโยชน์ของการใช้สียังรวมไปถึง
+        \begin{enumerate}
+          \item ช่วยในการมองเห็นภาพและความเข้าใจได้ดียิ่งขึ้น
+          \item เน้นความสำคัญของข้อมูล
+          \item ช่วยให้การออกแบบกราฟฟิก เป็นธรรมชาติมากยิ่งขึ้น
+          \item ลดข้อผิดพลาดในการตีความ
+          \item เพิ่มการมองเห็นภาพได้ดียิ่งขึ้น
+        \end{enumerate}
+  \item Responsive Design ควรคำนึงถึง User ที่มีการใช้งานแอพใน Device ที่แตกต่างกัน ทั้งในเรื่องของการป้อนข้อมูล ขนาดหน้าจอ และรูปทรง ผู้ใช้บางกลุ่มที่มีการใช้งานในแนวตั้ง บางคนอาจมีการใช้งานแนวนอน ดังนั้นในการออกแบบควรคำนึงถึงการวางตำแหน่งด้วย
+  \item Fonts การใช้ Font จะต้องเลือกใช้ตัวอักษรที่อ่านง่ายในทุกรูปแบบหน้าจอ  Font Display นั้นค่อนข้างอ่านยากในจอเล็กๆ ทางที่ดีควรเลือกควรเลือกใช้ Front ง่ายๆ เพราะหาก Device ไม่รองรับ front จะเกิดการแทนที่และอาจเกิดการแสดงผลในตัวอักษรที่แปลกไป นี่จึงเป็นเหตุผลที่การใช้ front มาตราฐานจึงเป็นตัวเลือกที่ดี
+\end{enumerate}
 
 \section{\ifenglish%
-\ifcpe CPE \else ISNE \fi knowledge used, applied, or integrated in this project
-\else%
-ความรู้ตามหลักสูตรซึ่งถูกนำมาใช้หรือบูรณาการในโครงงาน
-\fi
+    \ifcpe CPE \else ISNE \fi knowledge used, applied, or integrated in this project
+  \else%
+    ความรู้ตามหลักสูตรซึ่งถูกนำมาใช้หรือบูรณาการในโครงงาน
+  \fi
 }
 
 อธิบายถึงความรู้ และแนวทางการนำความรู้ต่างๆ ที่ได้เรียนตามหลักสูตร ซึ่งถูกนำมาใช้ในโครงงาน
 
 \section{\ifenglish%
-Extracurricular knowledge used, applied, or integrated in this project
-\else%
-ความรู้นอกหลักสูตรซึ่งถูกนำมาใช้หรือบูรณาการในโครงงาน
-\fi
+    Extracurricular knowledge used, applied, or integrated in this project
+  \else%
+    ความรู้นอกหลักสูตรซึ่งถูกนำมาใช้หรือบูรณาการในโครงงาน
+  \fi
 }
 
 อธิบายถึงความรู้ต่างๆ ที่เรียนรู้ด้วยตนเอง และแนวทางการนำความรู้เหล่านั้นมาใช้ในโครงงาน
