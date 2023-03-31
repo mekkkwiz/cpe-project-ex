@@ -5,7 +5,7 @@
   \fi
  }
 
-ในบทนี้จะกล่าวถึงภาพรวมของ BEVA ที่จะสร้างว่ามีการใช้งานอย่างไรการทำงานของ Dialogflow ทำงานอย่างไร
+ในบทนี้จะกล่าวถึงภาพรวมของ Chatbot ที่จะสร้างว่ามีการใช้งานอย่างไรการทำงานของ Dialogflow ทำงานอย่างไร
 พร้อมทั้งอธิบายการจัดการ database ทั้ง Cloud Storage และ Firestore ว่าวางแผนไว้อย่างไร
 
 \makeatletter
@@ -25,11 +25,11 @@
   \begin{center}
     \includegraphics[width=\textwidth,keepaspectratio]{pic/overview.png}
   \end{center}
-  \caption{ภาพรวมการทำงานของ BEVA}
+  \caption{ภาพรวมการทำงานของ Chatbot}
   \label{fig:overview}
 \end{figure}
-โปรเจคนี้ทำการพัฒนาแชทบอทผ่าน Dialogflow ที่เชื่อมต่อกับ Web application และทำการเชื่อมต่อเขียน
-โปรแกรมโดยใช้ NodeJS ดึงข้อมูลจาก Database โดยชนิดของ Database ที่ใช้เป็นแบบ NoSQL ซึ่งเมื่อผู้ใช้
+โปรเจคนี้ทำการพัฒนาแชทบอทผ่าน Dialogflow ที่เชื่อมต่อกับ Web application ในฝั่ง client ซึ่งสร้างโดยใช้ Next.Js และทำการเชื่อมต่อกับ
+server ที่เขียนด้วย Express ที่ทำงานอยู่บน NodeJS เพื่อเป็นตัวยิง requrest ดึงข้อมูลจาก Database โดยชนิดของ Database ที่ใช้เป็นแบบ NoSQL ซึ่งเมื่อผู้ใช้
 ถามคำถามผ่านทางการพูดใส่ไมค์ที่อยู่บริเวณอาคาร ตัว Web จะส่ง user request Google STT ก่อนเพื่อแปลง
 เสียงที่ได้รับมาให้กลายเป็นข้อความและตอบกลับมาที่เว็บหลังจากได้ตัวข้อความแล้วก็จะส่ง user request ไปยัง
 Dialogflow ซึ่งคำถามที่ส่งมานั้นจะถูกแยกออกเป็น 3 กรณีนั่นคือ
@@ -37,15 +37,15 @@ Dialogflow ซึ่งคำถามที่ส่งมานั้นจะ
 \begin{enumerate}
   \item ไม่ต้องการข้อมูลจาก database หรือ API: คำตอบจะถูกส่งคืนกลับไปเป็น agent response
         ของ Dialogflow
-  \item ต้องการข้อมูลจาก database: Dialogflow จะทำการส่ง API ไปที่ webhook จากนั้นจะทำการ
+  \item ต้องการข้อมูลจาก database: Dialogflow จะทำการส่ง API ไปที่ Fulfillment จากนั้นจะทำการ
         ดึงข้อมูลจาก database แล้วส่งกลับไปยัง Dialogflow ในรูปแบบของ JSON เพื่อให้ Dialogflow ส่ง
         คำตอบให้ผู้ใช้งานต่อไป
-  \item ต้องการข้อมูลจาก API: Dialogflow จะทำการส่ง API ไปที่ webhook จากนั้นจะทำการข้อมูล
+  \item ต้องการข้อมูลจาก API: Dialogflow จะทำการส่ง API ไปที่ Fulfillment จากนั้นจะทำการข้อมูล
         ซึ่ง API จะตอบกลับมาในรูปของ JSON ให้กับ Dialogflow และให้ Dialogflow ส่งคำตอบให้ผู้ใช้งานอีกที่
 \end{enumerate}
 \section{Database}
-\subsection{รูปแบบการเก็บข้อมูลใน Cloud Firestore}
-รูปแบบในการเก็บข้อมูลที่เลือกใช้จะเป็นแบบ NoSQL บน Cloud Firestore ซึ่งเราได้วางโครงสร้างไว้ดังนี้
+\subsection{รูปแบบการเก็บข้อมูลใน Realtime Database}
+รูปแบบในการเก็บข้อมูลที่เลือกใช้จะเป็นแบบ NoSQL บน Realtime Database ของ Firebase ซึ่งเราได้วางโครงสร้างไว้ดังนี้
 \begin{figure}[hbt!]
   \begin{center}
     \includegraphics[width=\textwidth,keepaspectratio]{pic/database_mapPath.png}
@@ -54,24 +54,27 @@ Dialogflow ซึ่งคำถามที่ส่งมานั้นจะ
   \label{fig:db_mapPath}
 \end{figure}
 
-\subsection{รูปแบบการเก็บข้อมูลใน Cloud Storage}
-รูปแบบในการเก็บข้อมูลที่อยู่บน Cloud Storage จะมีลักษณะเหมือนกับ Google Drive เราสามารถอัพโหลดไฟล์ขึ้นไปฝากไว้บน Cloud
-ได้โดยบนนี้เราจะเก็บไฟล์ video ที่แสดงเส้นทางไปยังห้องต่างๆในแต่ละชั้นดังนี้
 \begin{figure}[hbt!]
   \begin{center}
-    \includegraphics[width=\textwidth,keepaspectratio]{pic/db_storage.png}
+    \includegraphics[width=\textwidth,keepaspectratio]{pic/db_storage_folder.png}
+  \end{center}
+  \caption{folder สำหรับเก็บ video ของแผนที่สำหรับแต่ละห้อง}
+  \label{fig:db_storage_floorFolder}
+\end{figure}
+
+\begin{figure}[hbt!]
+  \begin{center}
+    \includegraphics[width=\textwidth,keepaspectratio]{pic/db_storage_file.png}
   \end{center}
   \caption{การเก็บข้อมูลไฟล์ video แผนที่สำหรับแต่ละห้อง}
   \label{fig:db_storage}
 \end{figure}
 
-\begin{figure}[hbt!]
-  \begin{center}
-    \includegraphics[width=\textwidth,keepaspectratio]{pic/db_storage_floorFolder.png}
-  \end{center}
-  \caption{folder สำหรับเก็บ video ของแผนที่สำหรับแต่ละห้อง}
-  \label{fig:db_storage_floorFolder}
-\end{figure}
+\subsection{รูปแบบการเก็บข้อมูลใน Cloud Storage}
+รูปแบบในการเก็บข้อมูลที่อยู่บน Cloud Storage จะมีลักษณะเหมือนกับ Google Drive เราสามารถอัพโหลดไฟล์ขึ้นไปฝากไว้บน Cloud
+ได้โดยบนนี้เราจะเก็บไฟล์ video ที่แสดงเส้นทางไปยังห้องต่างๆในแต่ละชั้นดังนี้
+
+
 
 \section{การทำงานของ Dialogflow}
 
@@ -96,8 +99,8 @@ Dialogflow มาเป็นตัวกลางระหว่างมนุ
 \begin{center}
 ``Hey Bot, Can you make an appointment for me at 9 p.m.?''
 \end{center}
-ตัวอย่างการระบุ Intent จะเห็นได้ว่าสิ่งที่ผู้ใช้งานต้องการคือ ทำการนัดหมายที่เวลา 9 p.m. ดังนั้น 
-Intent ของประโยคนี้คือ `make an appointment for me at 9 p.m.' จากนั้น Bot 
+ตัวอย่างการระบุ Intent จะเห็นได้ว่าสิ่งที่ผู้ใช้งานต้องการคือ ทำการนัดหมายที่เวลา 9 p.m. ดังนั้น
+Intent ของประโยคนี้คือ `make an appointment for me at 9 p.m.' จากนั้น Bot
 จะทำการตอบ  Reponse ที่เราได้เตรียมไว้สำหรับ Intent นี้เป็นลำดับถัดไป
 \subsection{ตรวจสอบ intent และตอบกลับ}
 

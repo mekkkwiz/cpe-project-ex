@@ -1,27 +1,84 @@
-\chapter{The first appendix}
 
-Text for the first appendix goes here.
+\chapter{การ setup firebase}
 
-\section{Appendix section}
+การตั้งค่า Firebase สำหรับโครงการนี้ ประกอบด้วยการตั้งค่า Firebase Realtime Database และ Firebase Storage
+เพื่อทำการเก็บข้อมูลที่สำคัญของโปรแกรม
 
-Text for a section in the first appendix goes here.
+\section{สร้างโปรเจ็กต์ใน Firebase Console}
+\begin{enumerate}
+\item ไปที่ \url{https://console.firebase.google.com/} แล้วเข้าสู่ระบบด้วยบัญชี Google ของคุณ
+\item เข้าไปที่ Firebase Console และคลิกที่ปุ่ม "Add project" เพื่อสร้างโปรเจ็กต์ใหม่
+\item ตั้งชื่อโปรเจ็กต์และเลือกประเทศที่คุณอยู่
+\item เปิดใช้งาน Google Analytics หากต้องการ
+\item กดปุ่ม "Create project" เพื่อสร้างโปรเจ็กต์ใหม่
+\end{enumerate}
 
-test ทดสอบฟอนต์ serif ภาษาไทย
+\section{เปิดใช้งาน Firebase Realtime Database}
+\begin{enumerate}
+\item เลือก "Realtime Database" จากเมนูด้านซ้ายของ Firebase Console
+\item กดปุ่ม "Create Database" และเลือกโหมด "Start in test mode"
+\item บันทึกการตั้งค่า
+\end{enumerate}
 
-\textsf{test ทดสอบฟอนต์ sans serif ภาษาไทย}
+\section{เปิดใช้งาน Firebase Storage}
+\begin{enumerate}
+\item เลือก "Storage" จากเมนูด้านซ้ายของ Firebase Console
+\item กดปุ่ม "Get started" เพื่อเริ่มต้นการตั้งค่า
+\item เลือกโปรไฟล์ของโปรเจ็กต์
+\item เลือกโฟลเดอร์เริ่มต้นเพื่อเก็บไฟล์
+\item เลือก "Start upload" เพื่ออัปโหลดไฟล์
+\end{enumerate}
+มีตัว bot สำหรับ upload video ให้ในไฟล์ \verb+Google_Cloud_Function/localBot.py+ สามารถอ่านวิธีการใช้งานได้จาก
+\url{https://github.com/mekkkwiz/Speech-Navigation-Chatbot/blob/master/Google_Cloud_Function/README.md}
 
-\verb+test ทดสอบฟอนต์ teletype ภาษาไทย+
-
-\texttt{test ทดสอบฟอนต์ teletype ภาษาไทย}
-
-\textbf{ตัวหนา serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}
-
-\textit{ตัวเอียง serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}
-
-\textbf{\textit{ตัวหนาเอียง serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}}
-
-\url{https://www.example.com/test_ทดสอบ_url}
+\section{เพิ่มคีย์การเข้าถึงของ Firebase ในโปรเจกต์ของเรา}
+\begin{enumerate}
+\item ไปที่หน้า Console Firebase แล้วเลือกโปรเจกต์ที่เราสร้างไว้
+\item เลือกเมนู Setting (icon รูปแฮมเบอร์เกอร์) จากด้านบนขวามือของหน้าจอ
+\item คลิกที่โปรเจกต์ของเราแล้วเลือกแท็บ Service Accounts จากนั้นคลิก Generate New Private Key
+\item ไฟล์ key จะถูกดาวน์โหลดลงบนเครื่องคุณ ให้เก็บไฟล์ key นี้ไว้ในโฟลเดอร์ DfFulfillment ของโปรเจกต์
+\item เปลี่ยนชื่อไฟล์ key ให้เป็น serviceAccountKey.json
+\end{enumerate}
 
 \chapter{\ifenglish Manual\else คู่มือการใช้งานระบบ\fi}
 
-Manual goes here.
+
+\section{การติดตั้ง}
+\begin{enumerate}
+\item ดาวน์โหลด repository จาก \url{https://github.com/mekkkwiz/Speech-Navigation-Chatbot}
+\item เปิด Command Prompt หรือ Terminal แล้วเข้าไปยังโฟลเดอร์ final-project-app ที่ดาวน์โหลดมา
+\item ใช้คำสั่ง npm install เพื่อติดตั้ง dependencies ทั้งหมด
+\item เข้าไปยังโฟลเดอร์ \verb+client_v2+ แล้วใช้คำสั่ง npm install เพื่อติดตั้ง dependencies ที่เกี่ยวข้อง
+\item เข้าไปยังโฟลเดอร์ DfFulfillment แล้วใช้คำสั่ง npm install เพื่อติดตั้ง dependencies ที่เกี่ยวข้อง
+\item สร้างไฟล์ .env และกำหนดค่าตัวแปรต่างๆดังนี้
+\begin{verbatim}
+GOOGLE_PROJECT_ID="your-project-id"
+DIALOGFLOW_SESSION_ID="unique-session-id"
+DIALOGFLOW_SESSION_LANGUAGE_CODE="th"
+GOOGLE_CLIENT_EMAIL="your-client-email"
+GOOGLE_PRIVATE_KEY="your-private-key"
+\end{verbatim}
+และดาวน์โหลด service account key จาก Google Cloud Platform แล้วบันทึกเป็นไฟล์
+serviceAccountKey.json ในโฟลเดอร์ DFfullfillment ของโปรเจค
+\end{enumerate}
+\section{การ start server}
+
+\begin{enumerate}
+\item เปิด Terminal แล้วเข้าไปยังโฟลเดอร์ final-project-app ที่ดาวน์โหลดมา
+\item ใช้คำสั่ง npm run dev เพื่อเริ่มต้นเซิร์ฟเวอร์
+\item เปิด Terminal อีกหนึ่งหน้าแล้วเข้าไปยังโฟลเดอร์ DfFulfillment ใช้คำสั่ง npm run dev เพื่อเริ่มต้น Fulfillment Server
+\item คุณอาจต้องใช้ ngrok เพื่อให้เซิร์ฟเวอร์ของ Fulfillment Server สามารถเข้าถึงจาก internet ได้ โดยดาวน์โหลดจาก \url{https://ngrok.com/download} แล้วใช้คำสั่ง ngrok http 3030 เพื่อเปิด ngrok
+\item คัดลอก https url ที่ได้จาก ngrok เข้าไปไว้ใน fulfillment url ในเว็บ dialogflow
+\end{enumerate}
+
+\section{การใช้งาน}
+\begin{enumerate}
+\item เปิดโปรแกรมในเบราว์เซอร์โดยไปที่ \url{http://localhost:3000}
+\item อนุญาตการเข้าถึงไมโครโฟนของคุณ
+\item ใช้คำสั่งด้วยเสียงเพื่อนำทางในอาคาร สอบถามตำแหน่งของอาจารย์ หรือสอบถามเรื่องสภาพอากาศ
+\item โปรแกรมจะตอบกลับด้วยเสียงผ่าน Google TTS API
+\end{enumerate}
+
+\section{วิธีการติดตั้งเพิ่มเติม}
+สามารถอ่านวิธีการติดตั้งเพิ่มเติมได้ที่
+\\\url{https://github.com/mekkkwiz/Speech-Navigation-Chatbot}

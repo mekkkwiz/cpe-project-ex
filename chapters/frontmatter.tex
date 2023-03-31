@@ -3,23 +3,33 @@
 
 \ifproject
 \begin{abstractTH}
-เขียนบทคัดย่อของโครงงานที่นี่
-
 การเขียนรายงานเป็นส่วนหนึ่งของการทำโครงงานวิศวกรรมคอมพิวเตอร์
-เพื่อทบทวนทฤษฎีที่เกี่ยวข้อง อธิบายขั้นตอนวิธีแก้ปัญหาเชิงวิศวกรรม และวิเคราะห์และสรุปผลการทดลองอุปกรณ์และระบบต่างๆ
-\enskip อย่างไรก็ดี การสร้างรูปเล่มรายงานให้ถูกรูปแบบนั้นเป็นขั้นตอนที่ยุ่งยาก
-แม้ว่าจะมีต้นแบบสำหรับใช้ในโปรแกรม Microsoft Word แล้วก็ตาม
-แต่นักศึกษาส่วนใหญ่ยังคงค้นพบว่าการใช้งานมีความซับซ้อน และเกิดความผิดพลาดในการจัดรูปแบบ กำหนดเลขหัวข้อ และสร้างสารบัญอยู่
-\enskip ภาควิชาวิศวกรรมคอมพิวเตอร์จึงได้จัดทำต้นแบบรูปเล่มรายงานโดยใช้ระบบจัดเตรียมเอกสาร
-\LaTeX{} เพื่อช่วยให้นักศึกษาเขียนรายงานได้อย่างสะดวกและรวดเร็วมากยิ่งขึ้น
+เพื่อโครงงานนี้มุ่งเน้นการพัฒนา chatbot ที่สามารถทำงานได้ผ่านเสียงของผู้ใช้งานเพื่อให้ความสะดวกสบายในการค้นหาเส้นทางภายในอาคาร
+รวมถึงข้อมูลอื่น ๆ เช่น เวลา สภาพอากาศ และตำแหน่งของอาจารย์ โดยใช้เทคโนโลยี Text-to-Speech (TTS) ในการสื่อสารกับผู้ใช้งาน
+วัตถุประสงค์ของโครงงานนี้คือ เพิ่มประสิทธิภาพการเข้าถึงข้อมูล ให้ข้อมูลเพิ่มเติมเช่นเวลา, สภาพอากาศ, และตำแหน่งของอาจารย์ ช่วยผู้ใช้งานในการค้นหาเส้นทางภายในอาคาร
+และประยุกต์ใช้ Text-to-Speech (TTS) เพื่อสร้างเสียงสังเคราะห์ที่สื่อสารกับผู้ใช้งาน โครงงานนี้จัดทำขึ้นโดยนายวิศรุต ติ๊บบุ่ง และมีขอบเขตที่ ทำที่ตึก 30 ปี
+ในมหาวิทยาลัยเชียงใหม่ ต้องเชื่อมต่อ Internet และรองรับการใช้งานผ่าน browser เท่านั้น ต้องใช้คอมพิวเตอร์ในการใช้งานเว็บไซต์
+และรองรับการสนทนาและตอบคำถามภาษาไทยเท่านั้น โครงการนี้คาดว่าจะช่วยให้บริการด้านเส้นทางภายในอาคารและลดความเสี่ยงต่อการแพร่ระบาดของเชื้อโควิด-19
+โดยลดการใช้งานมนุษย์และการใกล้ชิดกับผู้อื่น เมื่อโครงการสำเร็จ จะสามารถให้ประโยชน์ในด้านการสนับสนุนความสะดวกสบายในการเข้าถึงข้อมูล ลดการใช้ทรัพยากรมนุษย์
+และป้องกันการแพร่ระบาดของเชื้อโควิด-19 โดยสามารถนำไปติดตั้งที่อาคารต่าง ๆ ได้ในอนาคต
 \end{abstractTH}
 
 \begin{abstract}
-The abstract would be placed here. It usually does not exceed 350 words
-long (not counting the heading), and must not take up more than one (1) page
-(even if fewer than 350 words long).
-
-Make sure your abstract sits inside the \texttt{abstract} environment.
+  Writing a report is an integral part of working on a computer engineering project.
+  This project focuses on the development of a chatbot that can operate through user's voice input,
+  providing convenience in searching for routes within buildings, as well as other information such as time,
+  weather conditions, and the location of professors. This is achieved using Text-to-Speech (TTS) technology
+  to communicate with users. The objective of this project is to increase the efficiency of accessing
+  information, provide additional details such as time, weather, and the location of professors, assist
+  users in finding routes within buildings, and apply Text-to-Speech (TTS) technology to create synthesized
+  voices that communicate with users. This project is carried out by Mr. Wisarut Tibbung and is limited to
+  the 30-year-old building at Chiang Mai University. It requires an internet connection and supports usage
+  via a browser only, using a computer for website access, and supports Thai language conversation and question
+  answering only. This project is expected to help provide services related to routes within buildings while
+  reducing the risk of spreading COVID-19 by minimizing human interaction and close contact with others.
+  Once completed, the project will benefit users by supporting their convenience in accessing information,
+  reducing human resource usage, and preventing the spread of COVID-19, with the potential to be installed in
+  various buildings in the future.
 \end{abstract}
 
 \iffalse
@@ -31,10 +41,15 @@ Dedication page is optional.
 \fi % \iffalse
 
 \begin{acknowledgments}
-Your acknowledgments go here. Make sure it sits inside the
-\texttt{acknowledgment} environment.
+ในโครงงานฉบับนี้ สำเร็จลุล่วงได้อย่างสมบูรณ์ด้วยความกรุณาอย่างยิ่งจาก
+ผศ.ดร.ภาสกร แช่มประเสริฐ ที่ได้สละเวลาอันมีค่าแก่ผู้จัดทำโดยให้คำปรึกษาและแนะนำตลอดจน
+ตรวจทานแก้ไขข้อบกพร่องต่างๆด้วยความเอาใจใส่เป็นอย่างยิ่ง จนโครงงานฉบับนี้สำเร็จสมบูรณ์
+ลุล่วงได้ด้วยดีผู้จัดทำขอกราบขอบพระคุณเป็นอย่างสูงไว้ ณ ที่นี้ จากใจจริง
+ขอขอบคุณ อ.ดร.ชินวัตร อิศราดิสัยกุล ที่ได้กรุณาให้คำแนะนำและให้ข้อมูลสำหรับการทำโครงงาน
+ขอขอบคุณ รศ.ดร.อัญญา อาภาวัชรุตม์ วีระประพันธ์ ที่ได้กรุณาให้คำแนะนำและแนวมางในการปรับปรุงโครงงานชิ้นนี้
+ขอขอบคุณ ผศ.ดร.ยุทธพงษ์ สมจิต ที่ได้กรุณาให้คำแนะนำและแนวมางในการปรับปรุงโครงงานชิ้นนี้
 
-\acksign{2020}{5}{25}
+\acksign{2023}{3}{31}
 \end{acknowledgments}%
 \fi % \ifproject
 
